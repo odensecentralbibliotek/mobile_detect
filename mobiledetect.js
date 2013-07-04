@@ -21,7 +21,7 @@
         alert("Is mobile, but not tablet\nCookie is set to: " + Drupal.mobile_detect.get_mobile_cookie());
         if(Drupal.mobile_detect.get_mobile_cookie() !=2) {
           alert("Redirecting");
-          location.href = "https://moc.fynbib.dk/";
+          location.href = "http://moc.fynbib.dk/";
         }
       }
     });
