@@ -1,0 +1,47 @@
+<?php
+/**
+ * Using Mobile Detect to return a json object for ajax calls
+ **/
+require_once "mobile_detect.php";
+
+function mobile_detect_init(){
+  if (drupal_is_front_page()) {
+  drupal_add_js(drupal_get_path('module', 'mobile_detect') . 'mobiledetect.js');
+  }
+}
+/**
+ * Implements hook_permission().
+ */
+function mobile_detect_permission() {
+  return array(
+    "access mobile_detect" => array(
+      "title" => t("Access Mobile Detection"),
+      "description" => t("Access mobile detection"),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function mobile_detect_menu() {
+  $items['MobileDetect'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'mobile_detect_result_view',
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+/**
+ * Mobile detect result
+ */
+function mobile_detect_result_view() {
+  $m_detect = new Mobile_Detect();
+  $data = array();
+  $data["is_mobile"] = $m_detect->isMobile();
+  $data["is_tablet"] = $m_detect->isTablet();
+  $data["mobile_grade"] = $m_detect->mobileGrade();
+  echo drupal_json_encode($data);
+  drupal_exit();
+}
