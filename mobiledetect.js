@@ -16,24 +16,25 @@
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
         if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
           // Mobile device, but not a tablet - ask
-          var div = "<div id=\"mobile-detect-dialog\" title=\""+Drupal.t("Go to the mobile site")+"?\">"+
-                     '<p>'+
-                     '<span class="ui-icon ui-icon-alert"></span>'+
-                     Drupal.t("A non tablet mobile device has been detected.")+'<br>'+
-                     Drupal.t("Continue to the mobile site?")+
-                     '</p>'+
+          var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
+                     '<p>' +
+                     '<span class="ui-icon ui-icon-alert"></span>' +
+                     Drupal.t("A non tablet mobile device has been detected.") + '<br>' +
+                     Drupal.t("Continue to the mobile site?") +
+                     '</p>' +
                      '</div>';
           $('body').append(div);
           var dialog_yes = Drupal.t("Yes");
           var dialog_no = Drupal.t("No");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
-            height:180,
+            height: 180,
+            width: 310,
             modal: true,
             buttons: [{
               text: dialog_yes,
-              click: function() { 
-                $( this ).dialog( "close" );
+              click: function() {
+                $(this).dialog("close");
                 //force mobile layout & go to mobile site
                 Drupal.mobile_detect.set_mobile_cookie(1);
                 location.href = "http://moc.fynbib.dk/";
@@ -42,7 +43,7 @@
             {
               text: dialog_no,
               click: function() {
-                $( this ).dialog( "close" );
+                $(this).dialog("close");
                 //force full layout
                 Drupal.mobile_detect.set_mobile_cookie(2);
               }
