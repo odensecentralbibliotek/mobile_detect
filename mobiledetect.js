@@ -9,14 +9,19 @@
    * 3 = Auto
    **/
   $(document).ready(function () {
+    // Only continue if user hasn't forced full layout
     if(Drupal.mobile_detect.get_mobile_cookie() != 2) {
+      //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
         if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
+          // Mobile device, but not a tablet - ask
           if(confirm("Non tablet mobile device detected\nDo you want to continue to the mobile optimized site?")) {
+            //force mobile layout & go to mobile site
             Drupal.mobile_detect.set_mobile_cookie(1);
             location.href = "http://moc.fynbib.dk/";
           } else {
+            //force full layout
             Drupal.mobile_detect.set_mobile_cookie(2);
           }
         }
