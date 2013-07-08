@@ -37,13 +37,12 @@
           $("#mobile-detect-dialog p").css("line-height", "200%");
           $("#mobile-detect-dialog").css("font-size", fs + "px");
           $("#mobile-detect-dialog i").css("display", "block");
-          $("#mobile-detect-dialog").css("marginTop", "0");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
             height: wh-20,
             width: ww-20,
             modal: true,
-            top: "5px",
+            top: 5,
             buttons: [{
               text: dialog_yes,
               click: function() {
@@ -63,6 +62,7 @@
             }]
           });
           $(".ui-button-text").css("font-size", fs*2 + "px");
+          $("#mobile-detect-dialog").parent().css("top", "5px");
         }
       });
     }
