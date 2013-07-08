@@ -19,17 +19,25 @@
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
                      '<p>' +
                      '<span class="ui-icon ui-icon-alert"></span>' +
-                     Drupal.t("A non tablet mobile device has been detected.") + '<br>' +
+                     Drupal.t("A non tablet mobile device has been detected.") + '</p><p>' +
                      Drupal.t("Continue to the mobile site?") +
                      '</p>' +
                      '</div>';
           $('body').append(div);
           var dialog_yes = Drupal.t("Yes");
           var dialog_no = Drupal.t("No");
+          var ww = $(window).width();
+          var wh = $(window).height();
+          if (wh > (ww / 3 * 2)) {
+            wh = ww / 3 * 2;
+          }
+          var fs = ww/25;
+          $("#mobile-detect-dialog p").css("line-height", "200%");
+          $("#mobile-detect-dialog").css("font-size", fs + "px");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
-            height: 180,
-            width: 310,
+            height: wh-20,
+            width: ww-20,
             modal: true,
             buttons: [{
               text: dialog_yes,
