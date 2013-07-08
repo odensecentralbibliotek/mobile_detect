@@ -63,14 +63,34 @@
           $(".ui-button-text").css("font-size", fs*2 + "px");
           $("#mobile-detect-dialog").parent().css("top", "5px");
           $(".ui-dialog-buttonset").css("white-space", "nowrap");
-          var offsetRight = Math.floor ((ww - $(".ui-dialog-buttonset").outerWidth())/2)
+          var offsetRight = Math.floor ((ww - $(".ui-dialog-buttonset").outerWidth() - Drupal.mobile_detect.scrollbar_width())/2)
           $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
+          $(".ui-dialog-titlebar").css("height", "auto");
+          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", fs + "px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
+          $("#ui-dialog-title-mobile-detect-dialog").css("padding", "15px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
         }
       });
     }
   });
 
   Drupal.mobile_detect = {};
+
+  /**
+   * calculates scrollbar width
+   * Makes a dummy box, calculates sccrollbar width, then removes the dummy
+   */
+  Drupal.mobile_detect.scrollbar_width = function () {
+    var div = $('<div style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"><div style="height:100px;"></div>');
+    // Append our div, do our calculation and then remove it
+    $('body').append(div);
+    var w1 = $('div', div).innerWidth();
+    div.css('overflow-y', 'scroll');
+    var w2 = $('div', div).innerWidth();
+    $(div).remove();
+    return (w1 - w2);
+  }
 
   /**
    * 0 = undecided
