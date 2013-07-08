@@ -29,8 +29,8 @@
           var ww = $(window).width();
           // window height
           var wh = $(window).height();
-          if (wh > (ww / 3)) {
-            wh = ww / 3;
+          if (wh > (ww / 2)) {
+            wh = ww / 2;
           }
           // font size = window width / 25
           var fs = Math.floor(ww / 25);
