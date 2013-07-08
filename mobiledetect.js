@@ -18,8 +18,7 @@
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
                      '<p>' +
-                     Drupal.t("A non tablet mobile device has been detected.") + '</p><p>' +
-                     Drupal.t("Continue to the mobile site?") +
+                     Drupal.t("Do you wish a mobile tailored version of the site?") +
                      '</p>' +
                      '</div>';
           $('body').append(div);
@@ -63,6 +62,9 @@
           });
           $(".ui-button-text").css("font-size", fs*2 + "px");
           $("#mobile-detect-dialog").parent().css("top", "5px");
+          $(".ui-dialog-buttonset").css("white-space", "nowrap");
+          var offsetRight = Math.floor ((ww - $(".ui-dialog-buttonset").outerWidth())/2)
+          $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
         }
       });
     }
