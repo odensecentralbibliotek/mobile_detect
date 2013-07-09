@@ -14,7 +14,7 @@
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
-        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
+        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet || true) {
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
                      '<p>' +
@@ -76,7 +76,7 @@
 
           //Close icon size and position
           //Switches from jquery ui to font awesome
-          var icon_size = Math.floor(fs/2);
+          var icon_size = Math.floor(fs);
           var icon_margin_x = Math.floor(fs/4);
           var icon_margin_y = Math.floor(fs/8);
           var $icon = $(".ui-icon-closethick");
