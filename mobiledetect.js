@@ -28,9 +28,11 @@
           var ww = $(window).width();
           // window height
           var wh = $(window).height();
-          if (wh > (ww / 2)) {
-            wh = ww / 2;
+          if (wh > (ww / 3)) {
+            wh = ww / 3;
           }
+          //scrolbar width
+          var sw = Drupal.mobile_detect.scrollbar_width();
           // font size = window width / 25
           var fs = Math.floor(ww / 25);
           $("#mobile-detect-dialog p").css("line-height", "200%");
@@ -61,12 +63,7 @@
             }]
           });
           $("#mobile-detect-dialog").parent().css("top", "5px");
-          // Yes/no buttons position & size
-          $(".ui-dialog-buttonset").css("white-space", "nowrap");
-          var offsetRight = Math.floor ((ww - $(".ui-dialog-buttonset").outerWidth() - Drupal.mobile_detect.scrollbar_width())/2)
-          $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
           $(".ui-button-text").css("font-size", fs*2 + "px");
-
           //Dialog titlebar
           $(".ui-dialog-titlebar").css("height", "auto");
           $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(fs * 1.25) + "px");
@@ -96,6 +93,13 @@
           $icon.css("margin-top", "-2px");
           $a.css("margin-top", "-" + (icon_size/2) + "px");
           $icon.attr("title", Drupal.t("Close"));
+
+          // Yes/no buttons position & size
+          $(".ui-dialog-buttonset").css("white-space", "nowrap");
+          var bs = $(".ui-dialog-buttonset").outerWidth();
+          var offsetRight = Math.floor ((ww - bs - sw)/2) - 20;
+          //alert("Width: " + ww + ", buttonset: " + bs + ", scrollbar width: " + sw + " calc: " + offsetRight);
+          $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
         }
       });
     }
