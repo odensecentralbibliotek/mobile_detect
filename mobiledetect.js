@@ -14,7 +14,7 @@
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
-        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
+        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet || true) {
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
                      '<p>' +
@@ -60,16 +60,42 @@
               }
             }]
           });
-          $(".ui-button-text").css("font-size", fs*2 + "px");
           $("#mobile-detect-dialog").parent().css("top", "5px");
+          // Yes/no buttons position & size
           $(".ui-dialog-buttonset").css("white-space", "nowrap");
           var offsetRight = Math.floor ((ww - $(".ui-dialog-buttonset").outerWidth() - Drupal.mobile_detect.scrollbar_width())/2)
           $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
+          $(".ui-button-text").css("font-size", fs*2 + "px");
+
+          //Dialog titlebar
           $(".ui-dialog-titlebar").css("height", "auto");
-          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", fs + "px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(fs * 1.25) + "px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
-          $("#ui-dialog-title-mobile-detect-dialog").css("padding", "15px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
           $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
+
+          //Close icon size and position
+          //Switches from jquery ui to font awesome
+          var icon_size = Math.floor(fs/2);
+          var icon_margin_x = Math.floor(fs/4);
+          var icon_margin_y = Math.floor(fs/8);
+          var $icon = $(".ui-icon-closethick");
+          var $a = $(".ui-dialog-titlebar-close");
+
+          $icon.attr("class", "");
+          $icon.addClass("icon-remove");
+          $icon.css("overflow", "hidden");
+          $icon.css("color", "#000");
+          $icon.css("text-decoration", "none");
+          $icon.html("");
+          $icon.css("font-size",  + icon_size + "px");
+          $icon.width(icon_size-4);
+          $a.width(icon_size-4);
+          $icon.height(icon_size-4);
+          $a.height(icon_size-4);
+          $icon.css("margin-top", "-2px");
+          $a.css("margin-top", "-" + (icon_size/2) + "px");
+          $icon.attr("title", Drupal.t("Close"));
         }
       });
     }
