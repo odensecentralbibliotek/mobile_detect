@@ -14,7 +14,7 @@
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
-        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
+        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet || true) {
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\"></div>";
           $('body').append(div);
@@ -67,8 +67,8 @@
           $(".ui-dialog-titlebar").css("background-color", "#fff");
           $(".ui-widget-header").css("background-image", "none");
           $(".ui-widget-header").css("color", "#fff");
-          $(".ui-widget-header").css("background-color", "#222 !important");
-          
+          $(".ui-widget-header").css("background-color", "#222");
+          $(".ui-dialog-buttonpane").css("border", "0");
           $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
           $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(fs * 1.25) + "px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
@@ -90,9 +90,9 @@
           $icon.css("text-decoration", "none");
           $icon.html("");
           $icon.css("font-size",  + icon_size + "px");
-          $icon.width(icon_size-4);
+          $icon.width(icon_size-2);
           $a.width(icon_size-4);
-          $icon.height(icon_size-4);
+          $icon.height(icon_size-2);
           $a.height(icon_size-4);
           $icon.css("margin-top", "-2px");
           $a.css("margin-top", "-" + (icon_size/2) + "px");
