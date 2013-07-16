@@ -16,11 +16,7 @@
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
         if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
           // Mobile device, but not a tablet - ask
-          var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\">" +
-                     '<p>' +
-                     Drupal.t("Do you wish a mobile tailored version of the site?") +
-                     '</p>' +
-                     '</div>';
+          var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\"></div>";
           $('body').append(div);
           var dialog_yes = Drupal.t("Yes");
           var dialog_no = Drupal.t("No");
@@ -29,7 +25,7 @@
           // window height
           var wh = $(window).height();
           if (wh > (ww / 3)) {
-            wh = ww / 3;
+            wh = ww / 5;
           }
           //scrolbar width
           var sw = Drupal.mobile_detect.scrollbar_width();
@@ -66,6 +62,14 @@
           $(".ui-button-text").css("font-size", fs*2 + "px");
           //Dialog titlebar
           $(".ui-dialog-titlebar").css("height", "auto");
+          $(".ui-dialog-titlebar").css("padding-top", "5%");
+          $(".ui-dialog-titlebar").css("padding-bottom", "5%");
+          $(".ui-dialog-titlebar").css("background-color", "#fff");
+          $(".ui-widget-header").css("background-image", "none");
+          $(".ui-widget-header").css("color", "#fff");
+          $(".ui-widget-header").css("background-color", "#222 !important");
+          
+          $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
           $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(fs * 1.25) + "px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
           $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
@@ -82,7 +86,7 @@
           $icon.attr("class", "");
           $icon.addClass("icon-remove");
           $icon.css("overflow", "hidden");
-          $icon.css("color", "#000");
+          $icon.css("color", "#fff");
           $icon.css("text-decoration", "none");
           $icon.html("");
           $icon.css("font-size",  + icon_size + "px");
