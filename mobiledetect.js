@@ -67,7 +67,7 @@
           $(".ui-widget-header").css("background-color", "#222");
           $(".ui-dialog-buttonpane").css("border", "0");
           $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
-          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/26)+"px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/24)+"px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
           $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
           $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
