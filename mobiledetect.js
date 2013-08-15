@@ -33,7 +33,7 @@
           $("#mobile-detect-dialog i").css("display", "block");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
-            height: (wh/3),
+            height: 0,
             width: ww-20,
             modal: true,
             top: 5,
@@ -74,9 +74,7 @@
 
           //Close icon size and position
           //Switches from jquery ui to font awesome
-          var icon_size = Math.floor(32);
-          var icon_margin_x = Math.floor(32/4);
-          var icon_margin_y = Math.floor(32/8);
+          var icon_size = 32;
           var $icon = $(".ui-icon-closethick");
           var $a = $(".ui-dialog-titlebar-close");
 
@@ -112,9 +110,10 @@
           var mgh = Math.floor(dlh/2);
           $("#mobile-detect-dialog").height(0);
           $("#mobile-detect-dialog").css("padding","0");
+          $("#mobile-detect-dialog").css("margin","0");
           $(".ui-dialog-buttonpane").css("paddingBottom", mgh + "px");
           $(".ui-dialog-buttonpane").css("paddingTop", mgh + "px");
-          console.log ("dh: "+dh +"\nDLH: "+dlh+"\nbph: "+bph+"\nmgh: "+mgh);
+          console.log ("uidt: "+uidt +"\nDLH: "+dlh+"\nbph: "+bph+"\nmgh: "+mgh);
         }
       });
     }
