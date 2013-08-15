@@ -10,11 +10,11 @@
    **/
   $(document).ready(function () {
     // Only continue if user hasn't forced full layout
-    if(Drupal.mobile_detect.get_mobile_cookie() != 2) {
+    if(Drupal.mobile_detect.get_mobile_cookie() != 2 || true) {
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
-        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
+        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet || true) {
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\"></div>";
           $('body').append(div);
@@ -24,24 +24,16 @@
           var ww = $(window).width();
           // window height
           var wh = $(window).height();
-          // dialog height
-          var dh = 200;
           var aspect_ratio = ww / wh;
-          if(aspect_ratio > 1) {
-            dh = Math.floor(wh / 3);
-          } else {
-            dh = wh / 2;
-          }
+     
           //scrolbar width
           var sw = Drupal.mobile_detect.scrollbar_width();
-          // font size = window width / 25
-          var fs = 32; // font size in pixels
           $("#mobile-detect-dialog p").css("line-height", "200%");
-          $("#mobile-detect-dialog").css("font-size", fs + "px");
+          $("#mobile-detect-dialog").css("font-size", "200%");
           $("#mobile-detect-dialog i").css("display", "block");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
-            height: dh-20,
+            height: (wh/3),
             width: ww-20,
             modal: true,
             top: 5,
@@ -64,8 +56,7 @@
             }]
           });
           $("#mobile-detect-dialog").parent().css("top", "5px");
-          var btn_font_size = Math.floor(fs*((ww/380)+aspect_ratio));
-          $(".ui-button-text").css("font-size", btn_font_size + "px");
+          $(".ui-button-text").css("font-size", Math.floor(ww/8)+"px");
           //Dialog titlebar
           $(".ui-dialog-titlebar").css("height", "auto");
           $(".ui-dialog-titlebar").css("padding-top", "5%");
@@ -76,16 +67,16 @@
           $(".ui-widget-header").css("background-color", "#222");
           $(".ui-dialog-buttonpane").css("border", "0");
           $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
-          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(fs * 1.25) + "px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/24)+"px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
           $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
           $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
 
           //Close icon size and position
           //Switches from jquery ui to font awesome
-          var icon_size = Math.floor(fs);
-          var icon_margin_x = Math.floor(fs/4);
-          var icon_margin_y = Math.floor(fs/8);
+          var icon_size = Math.floor(32);
+          var icon_margin_x = Math.floor(32/4);
+          var icon_margin_y = Math.floor(32/8);
           var $icon = $(".ui-icon-closethick");
           var $a = $(".ui-dialog-titlebar-close");
 
@@ -105,11 +96,25 @@
           $icon.attr("title", Drupal.t("Close"));
 
           // Yes/no buttons position & size
+          $(".ui-dialog-buttonset button").css("float", "none");
           $(".ui-dialog-buttonset").css("white-space", "nowrap");
           var bs = $(".ui-dialog-buttonset").outerWidth();
           var offsetRight = Math.floor ((ww - bs - sw)/2) - 20;
           //alert("Width: " + ww + ", buttonset: " + bs + ", scrollbar width: " + sw + " calc: " + offsetRight);
           $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
+          // titlebar height
+          var uidt = $(".ui-dialog-titlebar").outerHeight();
+          // button pane height
+          var bph = $(".ui-dialog-buttonpane").outerHeight();
+          // dialog height - title bar height
+          var dlh = (wh / 2) - uidt;
+          // uses padding to make even space top and bottom
+          var mgh = Math.floor(dlh/2);
+          $("#mobile-detect-dialog").height(0);
+          $("#mobile-detect-dialog").css("padding","0");
+          $(".ui-dialog-buttonpane").css("paddingBottom", mgh + "px");
+          $(".ui-dialog-buttonpane").css("paddingTop", mgh + "px");
+          console.log ("dh: "+dh +"\nDLH: "+dlh+"\nbph: "+bph+"\nmgh: "+mgh);
         }
       });
     }
