@@ -25,12 +25,13 @@
           // window height
           var wh = $(window).height();
           if (wh > (ww / 3)) {
-            wh = ww / 5;
+            //wh = ww / 5;
+            wh = wh / 2;
           }
           //scrolbar width
           var sw = Drupal.mobile_detect.scrollbar_width();
           // font size = window width / 25
-          var fs = Math.floor(ww / 25);
+          var fs = Math.floor(ww / 20);
           $("#mobile-detect-dialog p").css("line-height", "200%");
           $("#mobile-detect-dialog").css("font-size", fs + "px");
           $("#mobile-detect-dialog i").css("display", "block");
