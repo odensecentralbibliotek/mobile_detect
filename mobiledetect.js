@@ -24,20 +24,24 @@
           var ww = $(window).width();
           // window height
           var wh = $(window).height();
-          if (wh > (ww / 3)) {
-            //wh = ww / 5;
-            wh = wh / 2;
+          // dialog height
+          var dh = 200;
+          var aspect_ratio = ww / wh;
+          if(aspect_ratio > 1) {
+            dh = Math.floor(wh / 3);
+          } else {
+            dh = wh / 2;
           }
           //scrolbar width
           var sw = Drupal.mobile_detect.scrollbar_width();
           // font size = window width / 25
-          var fs = Math.floor(ww / 20);
+          var fs = 32; // font size in pixels
           $("#mobile-detect-dialog p").css("line-height", "200%");
           $("#mobile-detect-dialog").css("font-size", fs + "px");
           $("#mobile-detect-dialog i").css("display", "block");
           $("#mobile-detect-dialog").dialog({
             resizable: false,
-            height: wh-20,
+            height: dh-20,
             width: ww-20,
             modal: true,
             top: 5,
@@ -60,7 +64,8 @@
             }]
           });
           $("#mobile-detect-dialog").parent().css("top", "5px");
-          $(".ui-button-text").css("font-size", fs*2 + "px");
+          var btn_font_size = Math.floor(fs*((ww/380)+aspect_ratio));
+          $(".ui-button-text").css("font-size", btn_font_size + "px");
           //Dialog titlebar
           $(".ui-dialog-titlebar").css("height", "auto");
           $(".ui-dialog-titlebar").css("padding-top", "5%");
