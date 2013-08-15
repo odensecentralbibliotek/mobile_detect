@@ -67,7 +67,7 @@
           $(".ui-widget-header").css("background-color", "#222");
           $(".ui-dialog-buttonpane").css("border", "0");
           $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
-          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/24)+"px");
+          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/26)+"px");
           $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
           $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
           $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
@@ -99,7 +99,7 @@
           var bs = $(".ui-dialog-buttonset").outerWidth();
           var offsetRight = Math.floor ((ww - bs - sw)/2) - 20;
           //alert("Width: " + ww + ", buttonset: " + bs + ", scrollbar width: " + sw + " calc: " + offsetRight);
-          $(".ui-dialog-buttonset").css("marginRight", offsetRight + "px");
+          $(".ui-dialog-buttonset").css("margin-right", offsetRight + "px");
           // titlebar height
           var uidt = $(".ui-dialog-titlebar").outerHeight();
           // button pane height
@@ -111,8 +111,8 @@
           $("#mobile-detect-dialog").height(0);
           $("#mobile-detect-dialog").css("padding","0");
           $("#mobile-detect-dialog").css("margin","0");
-          $(".ui-dialog-buttonpane").css("paddingBottom", mgh + "px");
-          $(".ui-dialog-buttonpane").css("paddingTop", mgh + "px");
+          $(".ui-dialog-buttonpane").css("padding-bottom", mgh + "px");
+          $(".ui-dialog-buttonpane").css("padding-top", mgh + "px");
           console.log ("uidt: "+uidt +"\nDLH: "+dlh+"\nbph: "+bph+"\nmgh: "+mgh);
         }
       });
