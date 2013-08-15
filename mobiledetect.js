@@ -10,11 +10,11 @@
    **/
   $(document).ready(function () {
     // Only continue if user hasn't forced full layout
-    if(Drupal.mobile_detect.get_mobile_cookie() != 2 || true) {
+    if(Drupal.mobile_detect.get_mobile_cookie() != 2) {
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
-        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet || true) {
+        if(Drupal.mobile_detect.MobileDetectObj.is_mobile && !Drupal.mobile_detect.MobileDetectObj.is_tablet) {
           // Mobile device, but not a tablet - ask
           var div = "<div id=\"mobile-detect-dialog\" title=\"" + Drupal.t("Go to the mobile site?") + "\"></div>";
           $('body').append(div);
