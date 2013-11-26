@@ -9,8 +9,8 @@
    * 3 = Auto
    **/
   $(document).ready(function () {
-    // Only continue if user hasn't forced full layout
-    if(Drupal.mobile_detect.get_mobile_cookie() != 2) {
+    // Only continue if user hasn't forced full or mobile layout
+    if(Drupal.mobile_detect.get_mobile_cookie() == 0) {
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
