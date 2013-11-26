@@ -10,7 +10,10 @@
    **/
   $(document).ready(function () {
     // Only continue if user hasn't forced full or mobile layout
-    if(Drupal.mobile_detect.get_mobile_cookie() == 0) {
+    if(Drupal.mobile_detect.get_mobile_cookie() == 1) {
+      location.href = "http://moc.fynbib.dk";
+    }
+    else if(Drupal.mobile_detect.get_mobile_cookie() == 0) {
       //detect mobile device
       $.post("/MobileDetect", function (data) {
         Drupal.mobile_detect.MobileDetectObj = $.parseJSON(data);
