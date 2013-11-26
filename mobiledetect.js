@@ -147,7 +147,7 @@
   }
 
   Drupal.mobile_detect.get_mobile_cookie = function () {
-    var search = 'showMobile=';
+    var search = 'ShowMobile=';
     var offset = document.cookie.indexOf(search);
     if (offset < 0) {
       return 0;
