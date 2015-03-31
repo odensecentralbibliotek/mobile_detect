@@ -37,6 +37,14 @@ function mobile_detect_menu() {
     'page callback' => 'mobile_detect_result_view',
     'access arguments' => array('access content'),
   );
+  $items['admin/config/mobiledetect/config'] = array(
+    'title' => 'mobile detect',
+    'description' => 'Configuration for mobile detect module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mobile_detect_posts_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -60,8 +68,8 @@ function mobile_detect_posts_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Place to send mobile users.'),
     '#default_value' => variable_get('Mobile_redirect_url', 'http://moc.fynbib.dk'),
-    '#size' => 2,
-    '#maxlength' => 2,
+    '#size' => 200,
+    '#maxlength' => 200,
     '#description' => t('Send users here when mobile and agreed.'),
     '#required' => TRUE,
   );
