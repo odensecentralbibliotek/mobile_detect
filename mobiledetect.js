@@ -39,7 +39,7 @@
           $("#mobile-detect-dialog p").css("line-height", "200%");
           $("#mobile-detect-dialog").css("font-size", "200%");
           $("#mobile-detect-dialog i").css("display", "block");
-          $("#mobile-detect-dialog").dialog({
+          var dialog = $("#mobile-detect-dialog").dialog({
             resizable: false,
             height: 0,
             width: ww-20,
@@ -64,27 +64,37 @@
             }]
           });
           $("#mobile-detect-dialog").parent().css("top", "5px");
-          $(".ui-button-text").css("font-size", Math.floor(ww/8)+"px");
+          dialog.parent().find(".ui-button-text").css("font-size", Math.floor(ww/8)+"px");
           //Dialog titlebar
-          $(".ui-dialog-titlebar").css("height", "auto");
-          $(".ui-dialog-titlebar").css("padding-top", "5%");
-          $(".ui-dialog-titlebar").css("padding-bottom", "5%");
-          $(".ui-dialog-titlebar").css("background-color", "#fff");
-          $(".ui-widget-header").css("background-image", "none");
-          $(".ui-widget-header").css("color", "#fff");
-          $(".ui-widget-header").css("background-color", "#222");
-          $(".ui-dialog-buttonpane").css("border", "0");
-          $("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
-          $("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/20)+"px");
-          $("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
-          $("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
-          $("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
+          dialog.parent().find(".ui-dialog-titlebar").css("height", "auto");
+          dialog.parent().find(".ui-dialog-titlebar").css("padding-top", "5%");
+          dialog.parent().find(".ui-dialog-titlebar").css("padding-bottom", "5%");
+          dialog.parent().find(".ui-dialog-titlebar").css("background-color", "#fff");
+          dialog.parent().find(".ui-widget-header").css("background-image", "none");
+          dialog.parent().find(".ui-widget-header").css("color", "#fff");
+          dialog.parent().find(".ui-widget-header").css("background-color", "#222");
+          dialog.parent().find(".ui-dialog-buttonpane").css("border", "0");
+          
+         dialog.parent().find("#ui-dialog-title-mobile-detect-dialog").css("background-color", "transparent!important");
+          dialog.parent().find("#ui-dialog-title-mobile-detect-dialog").css("font-size", Math.floor(ww/20)+"px");
+          dialog.parent().find("#ui-dialog-title-mobile-detect-dialog").css("display", "block");
+          dialog.parent().find("#ui-dialog-title-mobile-detect-dialog").css("padding", "20px");
+          dialog.parent().find("#ui-dialog-title-mobile-detect-dialog").css("clear", "both");
+          
+            var mobile_dialog_font_fix = jQuery('div[aria-describedby="mobile-detect-dialog"]').find('.ui-dialog-title');
+            if(mobile_dialog_font_fix !== undefined)
+            {
+                mobile_dialog_font_fix.css('font-size','49px');
+                mobile_dialog_font_fix.css('display','block');
+                mobile_dialog_font_fix.css('padding','20px');
+                mobile_dialog_font_fix.css('clear','both');
+            }
 
           //Close icon size and position
           //Switches from jquery ui to font awesome
           var icon_size = 32;
-          var $icon = $(".ui-icon-closethick");
-          var $a = $(".ui-dialog-titlebar-close");
+          var $icon = dialog.parent().find(".ui-icon-closethick");
+          var $a = dialog.parent().find(".ui-dialog-titlebar-close");
 
           $icon.attr("class", "");
           $icon.addClass("icon-remove");
@@ -102,16 +112,16 @@
           $icon.attr("title", Drupal.t("Close"));
 
           // Yes/no buttons position & size
-          $(".ui-dialog-buttonset button").css("float", "none");
-          $(".ui-dialog-buttonset").css("white-space", "nowrap");
-          var bs = $(".ui-dialog-buttonset").outerWidth();
+          dialog.parent().find(".ui-dialog-buttonset button").css("float", "none");
+          dialog.parent().find(".ui-dialog-buttonset").css("white-space", "nowrap");
+          var bs = dialog.parent().find(".ui-dialog-buttonset").outerWidth();
           var offsetRight = Math.floor ((ww - bs - sw)/2) - 20;
           //alert("Width: " + ww + ", buttonset: " + bs + ", scrollbar width: " + sw + " calc: " + offsetRight);
-          $(".ui-dialog-buttonset").css("margin-right", offsetRight + "px");
+          dialog.parent().find(".ui-dialog-buttonset").css("margin-right", offsetRight + "px");
           // titlebar height
-          var uidt = $(".ui-dialog-titlebar").outerHeight();
+          var uidt = dialog.parent().find(".ui-dialog-titlebar").outerHeight();
           // button pane height
-          var bph = $(".ui-dialog-buttonpane").outerHeight();
+          var bph = dialog.parent().find(".ui-dialog-buttonpane").outerHeight();
           // dialog height - title bar height
           var dlh = (wh / 2) - uidt;
           // uses padding to make even space top and bottom
@@ -119,8 +129,8 @@
           $("#mobile-detect-dialog").height(0);
           $("#mobile-detect-dialog").css("padding","0");
           $("#mobile-detect-dialog").css("margin","0");
-          $(".ui-dialog-buttonpane").css("padding-bottom", mgh + "px");
-          $(".ui-dialog-buttonpane").css("padding-top", mgh + "px");
+          dialog.parent().find(".ui-dialog-buttonpane").css("padding-bottom", mgh + "px");
+          dialog.parent().find(".ui-dialog-buttonpane").css("padding-top", mgh + "px");
           console.log ("uidt: "+uidt +"\nDLH: "+dlh+"\nbph: "+bph+"\nmgh: "+mgh);
         }
       });
